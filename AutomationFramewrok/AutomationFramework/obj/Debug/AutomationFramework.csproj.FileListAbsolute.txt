@@ -1,0 +1,6 @@
+C:\Users\OFeria\Source\Repos\AutomationFramework\AutomationFramewrok\AutomationFramework\bin\Debug\AutomationFramework.dll
+C:\Users\OFeria\Source\Repos\AutomationFramework\AutomationFramewrok\AutomationFramework\bin\Debug\AutomationFramework.pdb
+C:\Users\OFeria\Source\Repos\AutomationFramework\AutomationFramewrok\AutomationFramework\obj\Debug\AutomationFramework.csproj.AssemblyReference.cache
+C:\Users\OFeria\Source\Repos\AutomationFramework\AutomationFramewrok\AutomationFramework\obj\Debug\AutomationFramework.csproj.CoreCompileInputs.cache
+C:\Users\OFeria\Source\Repos\AutomationFramework\AutomationFramewrok\AutomationFramework\obj\Debug\AutomationFramework.dll
+C:\Users\OFeria\Source\Repos\AutomationFramework\AutomationFramewrok\AutomationFramework\obj\Debug\AutomationFramework.pdb
