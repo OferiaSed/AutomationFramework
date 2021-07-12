@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace AutomationFramework.Test
         [OneTimeSetUp]
         public void BeforeClass()
         {
+            string strConfigFile = ConfigurationManager.AppSettings.Get("configFile");
             blStop = clsReportResult.fnExtentSetup();
             if (!blStop)
                 AfterClass();

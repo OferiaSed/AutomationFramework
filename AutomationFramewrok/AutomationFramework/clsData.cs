@@ -163,5 +163,22 @@ namespace AutomationFramework
             return pstrDefaultValue;
         }
 
+
+        public void fnSaveValue(string pstrPath, string pstrSheet, string pstrColumn, int pintRow, string pstrValue)
+        {
+            SLDocument _document = new SLDocument(pstrPath);
+            if (!string.IsNullOrEmpty(pstrSheet))
+            {
+                if (_document.GetSheetNames().Contains(pstrSheet)) { _document.SelectWorksheet(pstrSheet); }
+                Dictionary<string, int> _dicHeaderE = _GetHeaders(_document);
+                if (_dicHeaderE.ContainsKey(pstrColumn))
+                {
+                    _document.SetCellValue(pintRow, _dicHeaderE[pstrColumn], pstrValue);
+                    _document.Save();
+                }
+            }
+        }
+
     }
+
 }

@@ -2,6 +2,7 @@
 using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +31,8 @@ namespace AutomationFramework
 
 
 
-        public static string strConfigFile = @"C:\AutomationProjects\AutomationSettings.xlsx";
+        //public static string strConfigFile = @"C:\AutomationProjects\AutomationSettings.xlsx";
+        public static string strConfigFile = ConfigurationManager.AppSettings.Get("configFile");
 
 
         public void fnOpenExcel(bool blRead = true)
