@@ -31,8 +31,7 @@ namespace AutomationFramework
 
 
 
-        //public static string strConfigFile = @"C:\AutomationProjects\AutomationSettings.xlsx";
-        public static string strConfigFile = ConfigurationManager.AppSettings.Get("configFile");
+        public static string strConfigFile = @"C:\AutomationProjects\AutomationSettings.xlsx";
 
 
         public void fnOpenExcel(bool blRead = true)
@@ -77,7 +76,7 @@ namespace AutomationFramework
             objSheet = objWkb.Worksheets["Configuration"] as Worksheet;
 
             strProjectName = objSheet.Cells[2, 1].Text();
-            strReportLocation = objSheet.Cells[2, 2].Text();
+            strReportLocation = objSheet.Cells[2, 2].Text() + DateTime.Now.ToString("MMddyyyy_hhmmss");
 
             string strExecutionRow;
 
@@ -91,7 +90,7 @@ namespace AutomationFramework
 
                 if (strExecutionRow.ToUpper() == "NEW")
                 {
-                    strExecutionDate = objSheet.Cells[x, 1].Text();
+                    //strExecutionDate = objSheet.Cells[x, 1].Text();
                     strReportName = objSheet.Cells[x, 2].Text();
                     strReportEnv = objSheet.Cells[x, 3].Text();
                     strExecutionSet = objSheet.Cells[x, 4].Text();
@@ -189,7 +188,8 @@ namespace AutomationFramework
         public void fnFolderSetup()
         {
 
-            string[] strSubFolders = new string[2] { "ScreenShots", strExecutionDate + "_" + strReportName };
+            //string[] strSubFolders = new string[2] { "ScreenShots", strExecutionDate + "_" + strReportName };
+            string[] strSubFolders = new string[2] { "ScreenShots", strReportName };
 
             bool blFExist = System.IO.Directory.Exists(strReportLocation);
             if (!blFExist)
@@ -219,7 +219,7 @@ namespace AutomationFramework
             while (!string.IsNullOrEmpty(objSSMethod.GetCellValueAsString(x, 1)))
             {
                 strProjectName = objSSMethod.GetCellValueAsString(x, 1);
-                strReportLocation = objSSMethod.GetCellValueAsString(x, 2);
+                strReportLocation = objSSMethod.GetCellValueAsString(x, 2) + DateTime.Now.ToString("MMddyyyy_hhmmss") + @"\";
 
                 x++;
             }

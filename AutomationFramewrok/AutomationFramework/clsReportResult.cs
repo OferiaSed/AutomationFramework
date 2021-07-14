@@ -15,7 +15,8 @@ namespace AutomationFramework
     {
         public static ExtentReports objExtent;
         public static ExtentTest objTest;
-        public static ExtentHtmlReporter objHtmlReporter;
+        //public static ExtentHtmlReporter objHtmlReporter;
+        public static ExtentV3HtmlReporter objHtmlReporter;
 
 
         public static bool fnExtentSetup()
@@ -29,14 +30,13 @@ namespace AutomationFramework
                 if (blSuccess)
                 {
                     //To create report directory and add HTML report into it
-                    objHtmlReporter = new ExtentHtmlReporter(clsDataDriven.strReportLocation + clsDataDriven.strExecutionDate + "_" + clsDataDriven.strReportName + @"\" + clsDataDriven.strReportName + ".html");
+                    //objHtmlReporter = new ExtentHtmlReporter(clsDataDriven.strReportLocation + clsDataDriven.strExecutionDate + "_" + clsDataDriven.strReportName + @"\" + clsDataDriven.strReportName + ".html");
+                    objHtmlReporter = new ExtentV3HtmlReporter(clsDataDriven.strReportLocation + clsDataDriven.strReportName + @"\" + clsDataDriven.strReportName + ".html");
+
                     objHtmlReporter.Config.ReportName = clsDataDriven.strReportName;
                     objHtmlReporter.Config.DocumentTitle = clsDataDriven.strProjectName + " - " + clsDataDriven.strReportName;
+                    objHtmlReporter.Config.Theme = AventStack.ExtentReports.Reporter.Configuration.Theme.Dark;
                     objHtmlReporter.Config.Encoding = "utf-8";
-
-                    //objHtmlReporter.Configuration().ReportName = clsDataDriven.strReportName;
-                    //objHtmlReporter.Configuration().DocumentTitle = clsDataDriven.strProjectName + " - " + clsDataDriven.strReportName;
-                    //objHtmlReporter.Configuration().Encoding = "utf-8";
 
                     objExtent = new ExtentReports();
                     objExtent.AddSystemInfo("Project", clsDataDriven.strProjectName);
@@ -125,7 +125,7 @@ namespace AutomationFramework
             //To take screenshot
             Screenshot objFile = ((ITakesScreenshot)clsWebBrowser.objDriver).GetScreenshot();
 
-            string strFileLocation = clsDataDriven.strReportLocation + @"\Screenshots\" + strSCName + ".jpg";
+            string strFileLocation = @clsDataDriven.strReportLocation + @"\Screenshots\" + strSCName + ".jpg";
             //To save screenshot
             objFile.SaveAsFile(strFileLocation, ScreenshotImageFormat.Jpeg);
 

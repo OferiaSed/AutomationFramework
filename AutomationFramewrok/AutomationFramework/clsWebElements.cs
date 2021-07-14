@@ -28,7 +28,7 @@ namespace AutomationFramework
             }
             catch (Exception pobjException)
             {
-                fnExceptionHandling(pobjException, "WebElement doesn't exist", true);
+                fnExceptionHandling(pobjException, "WebElement: " + pstrLocator + " doesn't exist", true);
                 return null;
             }
         }
@@ -103,12 +103,12 @@ namespace AutomationFramework
                 clsWebBrowser.wait.Until(wd => objJS.ExecuteScript("return document.readyState").ToString() == "complete");
 
                 fnGetFluentWait(pobjWebElement, strAction);
-                clsReportResult.fnLog("PageLoadPass", "The Page is loaded for the WebPage: " + pstrPage, "Pass", pblScreenShot);
+                clsReportResult.fnLog("PageLoadPass", "The Page is loaded for the Page: " + pstrPage, "Pass", pblScreenShot);
                 blResult = true;
             }
             catch (Exception pobjException)
             {
-                clsReportResult.fnLog("PageLoadFail", "The Page is not loaded for the WebPage: " + pstrPage, "Fail", true, pblHardStop, pstrHardStopMsg);
+                clsReportResult.fnLog("PageLoadFail", "The Page is not loaded for the Page: " + pstrPage, "Fail", true, pblHardStop, pstrHardStopMsg);
                 fnExceptionHandling(pobjException);
             }
             return blResult;
@@ -123,15 +123,14 @@ namespace AutomationFramework
             try
             {
                 clsReportResult.fnLog("SendKeys", "Step - Sendkeys: " + pstrTextEnter + " to field: " + pstrField, "Info", false);
-
                 strAction = "SendKeys";
                 fnGetFluentWait(pobjWebElement, strAction, pstrTextEnter);
-                clsReportResult.fnLog("SendKeysPass", "The text is entered correctly in the field: " + pstrField, "Pass", pblScreenShot);
+                clsReportResult.fnLog("SendKeysPass", "The SendKeys for: " + pstrField + " with value: " + pstrTextEnter + " was done successfully.", "Pass", pblScreenShot, pblHardStop);
                 blResult = true;
             }
             catch (Exception pobjException)
             {
-                clsReportResult.fnLog("SendKeysFail", "The text is not entered in the field: " + pstrField, "Fail", true, pblHardStop, pstrHardStopMsg);
+                clsReportResult.fnLog("SendKeysFail", "The SendKeys for: " + pstrField + " with value: " + pstrTextEnter + " has failed.", "Fail", true, pblHardStop, pstrHardStopMsg);
                 fnExceptionHandling(pobjException);
             }
             return blResult;
@@ -146,12 +145,14 @@ namespace AutomationFramework
 
                 strAction = "Click";
                 fnGetFluentWait(pobjWebElement, strAction);
-                clsReportResult.fnLog("ClickPass", "The click to the element is correctly for: " + pstrElement, "Pass", pblScreenShot);
+                //clsReportResult.fnLog("ClickPass", "The click to the element is correctly for: " + pstrElement, "Pass", pblScreenShot);
+                clsReportResult.fnLog("ClickPass", "Click on " + pstrElement + " was done successfully.", "Pass", pblScreenShot);
                 blResult = true;
             }
             catch (Exception pobjException)
             {
-                clsReportResult.fnLog("ClickFail", "The click to the element is not working for: " + pstrElement, "Fail", true, pblHardStop, pstrHardStopMsg);
+                //clsReportResult.fnLog("ClickFail", "The click to the element is not working for: " + pstrElement, "Fail", true, pblHardStop, pstrHardStopMsg);
+                clsReportResult.fnLog("ClickFail", "Click on " + pstrElement + " was done successfully.", "Fail", true, pblHardStop, pstrHardStopMsg);
                 fnExceptionHandling(pobjException);
             }
             return blResult;
@@ -162,18 +163,21 @@ namespace AutomationFramework
             bool blResult = false;
             try
             {
-                clsReportResult.fnLog("DoubleClick", "Step - Double Clic on " + pstrElement, "Info", false);
+                //clsReportResult.fnLog("DoubleClick", "Step - Double Clic on " + pstrElement, "Info", false);
 
                 strAction = "Displayed";
                 fnGetFluentWait(pobjWebElement, strAction);
                 Actions actions = new Actions(clsWebBrowser.objDriver);
                 actions.DoubleClick(pobjWebElement).Perform();
-                clsReportResult.fnLog("DoubleClickPass", "The Double click to the element is correctly for: " + pstrElement, "Pass", pblScreenShot);
+                //clsReportResult.fnLog("DoubleClickPass", "The Double click to the element is correctly for: " + pstrElement, "Pass", pblScreenShot);
+                clsReportResult.fnLog("DoubleClickPass", "Double Click on " + pstrElement + " was done successfully.", "Pass", pblScreenShot);
                 blResult = true;
             }
             catch (Exception pobjException)
             {
-                clsReportResult.fnLog("DoubleClickFail", "The Double click to the element is not working for: " + pstrElement, "Fail", true, pblHardStop, pstrHardStopMsg);
+                //clsReportResult.fnLog("DoubleClickFail", "The Double click to the element is not working for: " + pstrElement, "Fail", true, pblHardStop, pstrHardStopMsg);
+                clsReportResult.fnLog("DoubleClickPass", "Double Click on " + pstrElement, "Info", false);
+                clsReportResult.fnLog("DoubleClickPass", "Couldn't Double Click on " + pstrElement, "Fail", true, pblHardStop, pstrHardStopMsg);
                 fnExceptionHandling(pobjException);
             }
             return blResult;
@@ -188,11 +192,15 @@ namespace AutomationFramework
                 clsReportResult.fnLog("GetAttribute", "Step - Get Attribue " + pstrAttName + " from " + pstrElement, "Info", false);
 
                 strAttributeContent = pobjWebElement.GetAttribute(pstrAttName);
-                clsReportResult.fnLog("GetAttributePass", "The Attribute " + pstrAttName + " from the WebElement: " + pstrElement + "  is captured successfully", "Pass", pblScreenShot);
+                //clsReportResult.fnLog("GetAttributePass", "The Attribute " + pstrAttName + " from the WebElement: " + pstrElement + "  is captured successfully", "Pass", pblScreenShot);
+                clsReportResult.fnLog("GetAttributePass", "Get Attribute " + pstrAttName + " from Element: " + pstrElement + "  was done successfully.", "Pass", pblScreenShot);
+
             }
             catch (Exception pobjException)
             {
-                clsReportResult.fnLog("GetAttributeFail", "The Attribute " + pstrAttName + " from the WebElement: " + pstrElement + "  is not captured successfully", "Fail", pblScreenShot, pblHardStop, pstrHardStopMsg);
+                //clsReportResult.fnLog("GetAttributeFail", "The Attribute " + pstrAttName + " from the WebElement: " + pstrElement + "  is not captured successfully", "Fail", pblScreenShot, pblHardStop, pstrHardStopMsg);
+                clsReportResult.fnLog("GetAttributeFail", "Get Attribute " + pstrAttName + " from Element: " + pstrElement + ".", "Info", false);
+                //clsReportResult.fnLog("GetAttributeFail", "Couldn't Capture Get Attribute " + pstrAttName + " from Element: " + pstrElement + ".", "Fail", pblScreenShot, pblHardStop, pstrHardStopMsg);
                 fnExceptionHandling(pobjException);
             }
             return strAttributeContent;
@@ -203,7 +211,7 @@ namespace AutomationFramework
             bool blResult = false;
             try
             {
-                clsReportResult.fnLog("Clear", "Step - Clear to field: " + pstrField, "Info", false);
+                //clsReportResult.fnLog("Clear", "Step - Clear to field: " + pstrField, "Info", false);
 
                 strAction = "Clear";
                 fnGetFluentWait(pobjWebElement, strAction);
@@ -211,7 +219,8 @@ namespace AutomationFramework
                 string testTXT = pobjWebElement.Text;
                 if (pobjWebElement.Text.Equals("") || pobjWebElement.Text.Equals(null))
                 {
-                    clsReportResult.fnLog("ClearPass", "The text is cleared for the field: " + pstrField, "Pass", pblScreenShot);
+                    //clsReportResult.fnLog("ClearPass", "The text is cleared for the field: " + pstrField, "Pass", pblScreenShot);
+                    clsReportResult.fnLog("ClearPass", "Clear to field" + pstrField + " was done successfully.", "Pass", pblScreenShot);
                     blResult = true;
                 }
                 else
@@ -268,31 +277,6 @@ namespace AutomationFramework
             return blResult;
         }
 
-        public bool fnElementExistNoReport(string pstrStepName, string pstrLocator, bool pblScreenShot = true, bool pblHardStop = false, string pstrHardStopMsg = "Element Exist Failed and HardStop defined")
-        {
-            bool blResult = false;
-            try
-            {
-                bool blElementExist = fnGetExplicitWait(pstrLocator, "ElementExists");
-
-                if (blElementExist)
-                {
-                    //clsReportResult.fnLog("ElementExistPass", "Element " + pstrStepName + " exist in the page", "Pass", pblScreenShot);
-                    blResult = true;
-                }
-                else
-                    throw new ArgumentException("ElementExistFail");
-            }
-            catch (Exception pobjException)
-            {
-                //fnExceptionHandling(pobjException);
-                blResult = false;
-            }
-            return blResult;
-        }
-
-
-
         public bool fnElementNotExist(string pstrStepName, string pstrLocator, bool pblScreenShot = true, bool pblHardStop = false, string pstrHardStopMsg = "Element Not Exist Failed and HardStop defined")
         {
             bool blResult = false;
@@ -316,6 +300,31 @@ namespace AutomationFramework
             }
             return blResult;
         }
+
+        public bool fnElementExistNoReport(string pstrStepName, string pstrLocator, bool pblScreenShot = true, bool pblHardStop = false, string pstrHardStopMsg = "Element Exist Failed and HardStop defined")
+        {
+            bool blResult = false;
+            try
+            {
+                bool blElementExist = fnGetExplicitWait(pstrLocator, "ElementExists");
+
+                if (blElementExist)
+                {
+                    //clsReportResult.fnLog("ElementExistPass", "Element " + pstrStepName + " exist in the page", "Pass", pblScreenShot);
+                    blResult = true;
+                }
+                else
+                    blResult = false;
+                //throw new ArgumentException("ElementExistFail");
+            }
+            catch (Exception pobjException)
+            {
+                blResult = false;
+                //fnExceptionHandling(pobjException);
+            }
+            return blResult;
+        }
+
 
         public bool fnVerifyText(string pstrStepName, string pstrExpectedString, string pstrActualString, bool pblScreenShot = true, bool pblHardStop = false, string pstrHardStopMsg = "Verify Text Failed and HardStop defined")
         {
