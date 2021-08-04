@@ -20,6 +20,7 @@ namespace AutomationFramework
         public static string strReportLocation;
         public static string strReportName;
         public static string strReportEnv;
+        public static string strBrowser;
         public static string strExecutionDate;
         public static string strExecutionSet;
         public static int intCountTests;
@@ -94,6 +95,7 @@ namespace AutomationFramework
                     strReportName = objSheet.Cells[x, 2].Text();
                     strReportEnv = objSheet.Cells[x, 3].Text();
                     strExecutionSet = objSheet.Cells[x, 4].Text();
+                    strBrowser = objSheet.Cells[x, 6].Text();
 
                     blExecutionFlag = true;
                     break;
@@ -242,6 +244,7 @@ namespace AutomationFramework
                     strReportName = objSSMethod.GetCellValueAsString(x, 2);
                     strReportEnv = objSSMethod.GetCellValueAsString(x, 3);
                     strExecutionSet = objSSMethod.GetCellValueAsString(x, 4);
+                    strBrowser = objSSMethod.GetCellValueAsString(x, 6);
 
                     blExecutionFlag = true;
                     break;

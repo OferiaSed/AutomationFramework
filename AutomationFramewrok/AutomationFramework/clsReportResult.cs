@@ -40,7 +40,7 @@ namespace AutomationFramework
 
                     objExtent = new ExtentReports();
                     objExtent.AddSystemInfo("Project", clsDataDriven.strProjectName);
-                    objExtent.AddSystemInfo("Browser", "Chrome");
+                    objExtent.AddSystemInfo("Browser", clsDataDriven.strBrowser);
                     objExtent.AddSystemInfo("Env", clsDataDriven.strReportEnv);
                     objExtent.AttachReporter(objHtmlReporter);
                 }
