@@ -546,8 +546,8 @@ namespace AutomationFramework
             try
             {
                 clsReportResult.fnLog("ScrollTo", "Step - Scroll to element: " + pstrField, "Info", false);
-
                 clsWebBrowser.objDriver.ExecuteJavaScript("arguments[0].scrollIntoView(true);", pobjWebElement);
+                Thread.Sleep(TimeSpan.FromSeconds(2));
                 clsReportResult.fnLog("ScrollToPass", "Scrolled to element: " + pstrField, "Pass", pblScreenShot);
             }
             catch (Exception pobjException)
